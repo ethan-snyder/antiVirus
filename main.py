@@ -55,7 +55,7 @@ def checkSingleFile(filePath):
     compareCurrHash(knownHashes, currHash)
 
 # Mainly just checking functionality for now
-writeHashesToSet('knownHashes/knownHashes1.txt')
+writeHashesToSet('knownHashes/allHashes.txt')
 print(knownHashes)
 print("Enter a known virus hash.")
 knownHashInput = input()
