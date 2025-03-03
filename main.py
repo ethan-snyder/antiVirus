@@ -24,5 +24,39 @@ def check_api_key(api_key, api_hash):
 if api_key is None:
     print("API key not found in environment variables.")
 else:
-    # Check the API key
-    check_api_key(api_key, api_hash)
+    check_api_key(api_key, api_hash) # Check the API key
+
+# Simple function to get the hash of a file from its file path
+def getHashFromFile(filePath):
+    with open(filePath, 'rb') as file:
+        file_data = file.read()
+        sha256_hash = hashlib.sha256(file_data).hexdigest()
+        print(sha256_hash)
+    return sha256_hash
+
+# Initializing a knownHashes set. Function will take in a text file and read it line by line and writing
+# it directly to the knownHashes set.
+knownHashes = set() # Using a set for O(1) Processing
+def writeHashesToSet(hashesTxt):
+    with open(hashesTxt, 'r') as file:
+        for line in file:
+            knownHashes.add(line.strip())
+
+def compareCurrHash(knownHashes, sha256_hash):
+    if sha256_hash in knownHashes:
+        print("Known virus hash match.")
+        print(hash)
+        return True
+    else:
+        return False
+
+def checkSingleFile(filePath):
+    currHash = getHashFromFile(filePath)
+    compareCurrHash(knownHashes, currHash)
+
+# Mainly just checking functionality for now
+writeHashesToSet('knownHashes/knownHashes1.txt')
+print(knownHashes)
+print("Enter a known virus hash.")
+knownHashInput = input()
+compareCurrHash(knownHashes, knownHashInput)
